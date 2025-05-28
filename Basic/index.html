@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Rashed</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>khaled</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Masud</td>
+      </tr>
+    </table>
+
+    <!-- <script src="variable_data_type.js"></script> -->
+
+    <script>
+      let again;
+      do {
+        
+
+        let num1= Math.round(Math.random()*100) ;
+        let num2=Math.round(Math.random()*100) ;
+        alert(`${num1} + ${num2} = ?!` )
+
+         let answer =prompt("Give me the answer");
+
+
+        console.log(num1);
+        console.log(num2);
+        console.log(num1 + num2);
+        
+        if(answer == ( num1 + num2)){
+           alert("ok")
+           again = confirm("Do you want to try again?");
+        }
+        
+
+      } while (again);
+    </script>
+  </body>
+</html>

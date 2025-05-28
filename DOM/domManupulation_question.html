@@ -1,0 +1,130 @@
+<!-- 
+Change the text of the heading with id mainHeading to “Welcome to DOM World!”.
+
+Change the background color of all <button> elements to green.
+
+Change the font size of the first <p> tag to 20px.
+
+Replace the content of #contentBox with the bold text: New dynamic content!
+
+Create and append a new <li> with text “New Item” to the list #itemList.  src 
+
+Create and append a new image (<img>) with a placeholder image into #imageHolder.  'https://via.placeholder.com/150'
+
+Remove the last <li> element from #itemList.
+
+When the #removeButton is clicked, remove the element with id removeMe.
+
+Change the link of #learnMoreLink to point to www.google.com.
+
+When the #highlightButton is clicked, add the class highlight to #specialBox.
+
+On clicking the #toggleButton, toggle the class active on #toggleDiv.
+
+Show an alert saying “Button clicked successfully!” when #alertButton is clicked.
+
+Change the background color of #hoverBox to yellow when hovered and reset it when mouse leaves.
+
+Display the text being typed in #usernameInput live inside #displayUsername.
+
+After 3 seconds, change the page title to "Ready to Start!".
+
+When the #scrollTopButton is clicked, scroll the page to the top. 
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DOM Practice</title>
+  <style>
+    .highlight { background-color: lightgreen; }
+    .active { border: 2px solid red; }
+    #hoverBox { width: 200px; height: 50px; background: lightgray; margin: 10px 0; }
+  </style>
+</head>
+<body>
+
+  <h1 id="mainHeading">Original Heading</h1>
+
+  <button onclick="changeTitle()">Button 1</button>
+  <button onclick="changeTitle2()">Button 2</button>
+
+  <p>This is a paragraph.</p>
+
+  <div id="contentBox">Old Content</div>
+
+  <ul id="itemList">
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+
+  <button id="addlist">Add list</button>
+  <button id="removeList">Add list</button>
+
+  <div id="imageHolder"></div>
+
+  <div id="removeMe">I will be removed</div>
+  <button id="removeButton">Remove Element</button>
+
+  <a id="learnMoreLink" href="#">Learn More</a>
+
+  <div id="specialBox">Special Box</div>
+  <button id="highlightButton">Highlight Box</button>
+
+  <div id="toggleDiv">Toggle This</div>
+  <button id="toggleButton">Toggle Class</button>
+
+  <button id="alertButton">Click for Alert</button>
+
+  <div id="hoverBox">Hover Over Me</div>
+
+  <input type="text" id="usernameInput" placeholder="Type your name">
+  <div id="displayUsername"></div>
+
+  <button id="scrollTopButton">Scroll to Top</button>
+
+  <pre>
+     
+     create a form which includs 
+     1 name 
+     2 email
+     3 city (dorpdown)
+     4 gender (redio button)
+     5 subject (checkbox)
+     6 comment (textarea)
+     and submit button to submit the form to a new window
+
+
+   </pre>
+
+  <!-- Link your JavaScript file here -->
+  <script src="dom-practice.js"></script>
+
+  <script>
+       function changeTitle(){
+         document.getElementById('mainHeading').innerText='Welcome to DOM World!'
+       }
+       function changeTitle2(){
+         document.getElementById('mainHeading').innerText='Original Heading'
+       }
+
+      let allbutton=  document.querySelectorAll('button');
+       allbutton.forEach(button=>{
+         button.style.backgroundColor='green'
+       })
+
+       document.querySelector('p').style.fontSize='30px'
+
+       document.getElementById('hoverBox').addEventListener('mouseover', ()=>{
+          console.log(this);
+           document.getElementById('hoverBox').style.backgroundColor='red'
+          
+       })
+      
+
+  </script>
+</body>
+</html>

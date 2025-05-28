@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <style>
+      body {
+        display: flex;
+        gap: 30px;
+      }
+
+      .products {
+        display: flex;
+        gap: 10px;
+        flex-flow: row wrap;
+      }
+
+      .card {
+        box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table,
+      th,
+      tr,
+      td {
+        border: 1px solid lightgray;
+        padding: 5px;
+      }
+
+      .button-group {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="shop">
+
+    </div>
+    <div class="bill">
+      <table>
+        <thead>
+          <tr>
+            <th>Sn</th>
+            <th>Name</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>action</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbody">
+
+        </tbody>
+        
+      </table>
+
+       <button onclick="orderProces()" style="margin-top: 10px;">Proces</button>
+    </div>
+
+    <script src="cart.js"></script>
+    <script>
+
+     const purchase= new Cart('purchase');
+
+    //  console.log(purchase.getItems());
+     
+
+      let items = [
+        { id: 1, name: "Apple", photo: "apple.jpg", price: 300, qty: 1 },
+        { id: 2, name: "Banana", photo: "banana.webp", price: 10, qty: 1 },
+        { id: 3, name: "Orange", photo: "orange.jpeg", price: 250, qty: 1 },
+        { id: 4, name: "Pinapple", photo: "pinapple.jpeg", price: 250, qty: 1 },
+      ];
+
+      printProduct();
+
+      function printProduct() {
+        let html = `<div class="products"> `;
+        items.forEach((item) => {
+          html += `
+      <div class="card">
+              <div class="card-image">
+                <img src="img/${item.photo}" alt="" width="100">
+              </div>
+              <div>
+              ${item.name} <br>
+                Price: ${item.price}
+              </div>
+              <div class="card-footer">
+                <button onclick='add(${item.id})'>Add</button>
+              </div>
+          </div>
+      `;
+        });
+
+        html += `</div>`;
+
+        let shop = document.querySelector("#shop");
+        shop.innerHTML = html;
+      }
+
+      let cart = [];
+
+      function add(id) {
+        let item = items.find((item) => item.id == id);
+        // let itemexist = cart.find((item) => item.id == id);
+
+        // if (itemexist != undefined) {
+        //   itemexist.qty += 1;
+        // } else {
+        //   cart.push(item);
+        // }
+
+
+       purchase.add(item);
+
+        bill()
+        console.log(cart);
+      }
+
+      bill()
+
+      function bill() {
+        let html= ``;
+        let sn=1;
+        let total=0;
+        let cart2= purchase.getItems();
+        cart2.forEach((item) => {
+        // cart.forEach((item) => {
+            let lineTotal= item.qty * item.price;
+            total+= lineTotal;
+         html+=`
+         <tr>
+          <td>${sn++}</td>
+          <td>${item.name}</td>
+          <td>${item.qty}</td>
+          <td>${item.price}</td>
+          <td>${lineTotal}</td>
+          <td>
+            <div class="button-group">
+              <button onclick='add(${item.id})'>+</button>
+              <button onclick='qtydown(${item.id})'>-</button>
+              <button onclick='itemRemove(${item.id})'>X</button>
+            </div>
+          </td>
+        </tr>
+         `;
+        });
+
+        html+=`
+         <tr>
+            <th colspan='4'>Total</th> 
+            <th id='totalcost'>${total}</th> 
+            <th><button onclick='allClear()'>Clear</button></th> 
+        </tr>
+        `;
+
+        let bill= document.getElementById('tbody');
+        bill.innerHTML=html;
+      }
+
+     function qtydown(id){
+        // let itemexist = cart.find((item) => item.id == id);
+        //  if (itemexist != undefined) {
+        //   if (itemexist.qty > 1) {
+        //        itemexist.qty -= 1;
+        //   }
+        // }
+        purchase.itemDec(id);
+        bill();
+     }
+
+     function itemRemove(id){
+        // cart= cart.filter(item=> item.id != id);
+        purchase.delItem(id)
+        bill()
+     }
+
+
+     function orderProces(){
+       let total= parseFloat(document.getElementById('totalcost').innerText) ;
+        let cartData={
+          //  cartProduct: cart,
+           cartProduct: purchase.getItems(),
+           orderTotal: total,
+           customer_id:10,
+        }
+
+        console.log(cartData);
+        
+     }
+
+    function allClear(){
+       cart= [];
+      purchase.delAll()
+      bill()
+    }
+
+
+    </script>
+  </body>
+</html>

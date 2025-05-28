@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="basic">
+      <div>
+        <label for="">Name</label>
+        <input type="text" name="txtName" placeholder="username" />
+      </div>
+      <div>
+        <label for="">Email</label>
+        <input type="text" name="email" id="" placeholder="abc@gmail.com" />
+      </div>
+
+      <div>
+        <label for="">Gender</label> <br />
+        <input type="radio" name="gender" id="" value="male" /> Male
+        <input type="radio" name="gender" id="" value="female" /> Female
+      </div>
+
+      <div>
+        <label for="">Subject</label> <br />
+        <input type="checkbox" name="subject" id="" value="Bangla" />Bangla
+        <input type="checkbox" name="subject" id="" value="English" />English
+        <input type="checkbox" name="subject" id="" value="Math" />Math
+      </div>
+
+      <div>
+        <label for="">City</label> <br />
+
+        <select name="city" id="">
+          <option value="dhaka">Dhaka</option>
+          <option value="rajshahi">Rajshahi</option>
+          <option value="khulna">Khulna</option>
+        </select>
+      </div>
+      <br />
+      <button name="submit" type="submit">Submit</button>
+    </form>
+
+    <script>
+      let form = document.basic;
+
+      form.submit.addEventListener("click", function (e) {
+        e.preventDefault();
+        let name = form.txtName.value;
+        let email = form.email.value;
+        let gender = "";
+        let genderData = form.gender;
+        for (const g of genderData) {
+          if (g.checked) {
+            gender = g.value;
+          }
+        }
+        let subject = "";
+        let subjectData = form.subject;
+        for (const s of subjectData) {
+          if (s.checked) {
+            subject += s.value + ",";
+          }
+        }
+
+        let city = form.city.value;
+        console.log(city);
+
+        let w= window.open(
+          "",
+          "",
+          "width=600,height=400,top=0,left=0"
+        );
+
+           w.document.write(`<p>Name: ${name}</p>`);
+           w.document.write(`<p>Email: ${email}</p>`);
+           w.document.write(`<p>Gender: ${gender}</p>`);
+      });
+
+      console.log(form);
+    </script>
+  </body>
+</html>
