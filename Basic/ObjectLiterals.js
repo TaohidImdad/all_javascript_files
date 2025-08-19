@@ -17,6 +17,8 @@ const  person = {
     
 };
 
+let abc = {...person , address:{zip:123}};
+console.log(abc);
 
 // 1 make an object 
 // 2 add a  property 
@@ -126,4 +128,4 @@ const student ={
 };
 
 // console.log("Student Object:", student);
- student.greet();
+//  student.greet();

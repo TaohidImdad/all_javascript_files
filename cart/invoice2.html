@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         .card{
+             height: 320px;
+             width: 200px;
+             box-shadow: 0 0 3px 0px rgba(0, 0, 0,.3);
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             gap: 11px;
+             position: relative;
+             font-weight: bold;
+             padding: 5px;
+             
+         }
+         .card::before{
+            content: "";
+            position: absolute;
+            width: 101%;
+            height: 38%;
+            bottom:0;
+            background-color: rgba(102, 240, 240, 0.726);
+            z-index: -1;
+         }
+
+         .card img{
+             width: 100%;
+         }
+
+
+        .card .img{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+         }
+
+         .card button{
+            font-weight: bold;
+            font-size: 17px;
+            border-radius: 10px;
+            background-color: rgb(4, 16, 180);
+            color: white;
+            border: none;
+            padding:8px 20px;
+         }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="products">
+          <div class="card">
+              <div class="img"><img src="img/apple.jpg" alt="" srcset=""></div>
+             <div class="description">Lorem ipsum dolor sit amet.</div>
+             <div class="cost">Price: $12</div>
+             <button >Add</button>
+          </div>
+    </div>
+    <div class="calculator">
+
+    </div>
+</body>
+</html>
